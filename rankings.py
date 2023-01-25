@@ -8,7 +8,7 @@ editorial_categories = ["female", "nb", "na", "ea", "ma", "sa", "wa", "me", "ca"
 # The purpose of this function is purely for testing the rest of the algorithm.
 def build_user_p():
     p = []
-    for index in range(20):
+    for index in range(10):
         tags = {secrets.choice(editorial_categories)}
         track = {"artist": "s" + str(index), "track": "t" + str(index)}
         pu = {"_id": track, "tags": tags, "i": index}
