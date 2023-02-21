@@ -10,10 +10,12 @@ list_ids = ["m", "e"]
 
 # Function that generates a list of Rankings for the given number of users.
 # it generates a random Πu for the given size n of users
-def generate_users(m=10):
+def generate_p_users(m=10, n=10):
     users = []
     for i in range(m):
-        users.append(generate_p_user())
+        user = generate_p_user(n)
+        np.random.shuffle(user)
+        users.append(user)
     return users
 
 

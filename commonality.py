@@ -1,5 +1,7 @@
 from pprint import pprint
 
+import numpy
+
 
 def calculate_user_recall_for_g_in_k(pu, g, k):
     g_el_pu = 0
@@ -22,9 +24,13 @@ def calculate_rank_biased_precision(gama, k):
 
 def calculate_user_familiarity_for_g(pu, g, gama):
     familiarity = 0
-    for i in range(len(pu)):
-        tr = calculate_user_recall_for_g_in_k(pu, g, i)
-        tp = calculate_rank_biased_precision(gama, i)
+    for k in range(len(pu)):
+        tr = calculate_user_recall_for_g_in_k(pu, g, k)
+        tp = calculate_rank_biased_precision(gama, k)
         familiarity += tp * tr
 
     return familiarity
+
+
+def calculate_commonality_for_g(familiarities):
+    return numpy.prod(familiarities)
