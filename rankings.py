@@ -1,7 +1,6 @@
 import secrets
 import numpy as np
 
-# TODO Fix the random to make more with mainstream
 editorial_categories = ["female", "nb", "na", "ea", "ma", "sa", "wa", "me", "ca", "sea", "non-binary"]
 main_categories = "mains"
 
