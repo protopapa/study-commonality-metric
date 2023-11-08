@@ -1,8 +1,13 @@
 import argparse
 from pprint import pprint
-
+from authorization import *
 from commonality import calculate_user_familiarity_for_g, calculate_commonality_for_g
 from rankings import editorial_categories, generate_p_users
+from playlist import create_playlist
+from user import get_user_info
+
+access_token = ""
+refresh_token = ""
 
 
 def users(n, m):
@@ -26,16 +31,26 @@ def metric_calculations(p, user_list):
     print(f"Commonalities", commonalities)
 
 
+# if __name__ == '__main__':
+#     parser = argparse.ArgumentParser()
+#     # Adding optional argument
+#     parser.add_argument("-m", "--Users", help="Amount of Users to generate")
+#     parser.add_argument("-n", "--List", help="Size of rank list to generate")
+#     parser.add_argument("-p", "--Patience", help="User's patience to use at the RBP")
+#     # Read arguments from command line
+#     args = parser.parse_args()
+#
+#     ul = users(int(args.Users), int(args.List))
+#     pprint(ul)
+#
+#     metric_calculations(float(args.Patience), ul)
+
+
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    # Adding optional argument
-    parser.add_argument("-m", "--Users", help="Amount of Users to generate")
-    parser.add_argument("-n", "--List", help="Size of rank list to generate")
-    parser.add_argument("-p", "--Patience", help="User's patience to use at the RBP")
-    # Read arguments from command line
-    args = parser.parse_args()
+    session = create_spotify_session()
+    get_user_authorization(session)
+    # Get the authorization verifier code from the callback url
+    redirect_response = input('\n\nPaste the full redirect URL here: ')
+    session = get_token(session, redirect_response)
 
-    ul = users(int(args.Users), int(args.List))
-    pprint(ul)
-
-    metric_calculations(float(args.Patience), ul)
+    get_user_info(session)
