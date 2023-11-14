@@ -1,8 +1,10 @@
 import argparse
+from pprint import pprint
+
 from authorization import *
 from commonality import calculate_user_familiarity_for_g, calculate_commonality_for_g
 from rankings import editorial_categories, generate_p_users
-from user import get_user_info
+from playlist import *
 
 client_id = ""
 client_secret = ""
@@ -52,6 +54,6 @@ if __name__ == '__main__':
     get_user_authorization(session)
     # Get the authorization verifier code from the callback url
     redirect_response = input('\n\nPaste the full redirect URL here: ')
-    session = get_token(session, redirect_response, client_id, client_secret)
+    token = get_token(session, redirect_response, client_id, client_secret)
 
-    get_user_info(session)
+    create_playlist(token["access_token"])

@@ -6,7 +6,7 @@ from requests_oauthlib import OAuth2Session
 authorization_base_url = "https://accounts.spotify.com/authorize"
 token_url = "https://accounts.spotify.com/api/token"
 
-scope = ["playlist-modify-public", "user-top-read", "user-read-email", "user-read-private"]
+scope = ["playlist-modify-public", "playlist-modify-public", "user-top-read", "user-read-email", "user-read-private"]
 
 
 def create_spotify_session(client_id):
@@ -16,10 +16,8 @@ def create_spotify_session(client_id):
 def get_user_authorization(session):
     authorization_url, state = session.authorization_url(authorization_base_url)
     print('Please go here and authorize: ', authorization_url)
-    return authorization_url
 
 
 def get_token(session, rrsp, client_id, client_secret):
     auth = HTTPBasicAuth(client_id, client_secret)
-    session.fetch_token(token_url, auth=auth, authorization_response=rrsp)
-    return session
+    return session.fetch_token(token_url, auth=auth, authorization_response=rrsp)
