@@ -1,6 +1,7 @@
 import requests
 
-playlist_url = "https://api.spotify.com/v1/users/anastasia_protopapa/playlists"
+base_url = "https://api.spotify.com/v1/users/"
+playlists = "/playlists"
 
 playlist_info = {
     "name": "A Playlist adhering to the Commonality ",
@@ -9,9 +10,7 @@ playlist_info = {
 }
 
 
-def create_playlist(access_token):
+def create_playlist(access_token, user_id):
     headers = {'Authorization': "Bearer " + access_token, 'Content-Type': 'application/json'}
-    response = requests.post(playlist_url, headers=headers, json=playlist_info)
-    attributes = vars(response)
-    for attribute, value in attributes.items():
-        print(attribute, "=", value)
+    response = requests.post(base_url + user_id + playlists, headers=headers, json=playlist_info)
+    return response.status_code

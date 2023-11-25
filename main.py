@@ -1,13 +1,13 @@
 import argparse
-from pprint import pprint
 
 from authorization import *
 from commonality import calculate_user_familiarity_for_g, calculate_commonality_for_g
 from rankings import editorial_categories, generate_p_users
-from playlist import *
+from datalist import *
 
 client_id = ""
 client_secret = ""
+init_artist_id = "32iu6edxEe5fMPX029eAU3"
 
 
 def users(n, m):
@@ -56,4 +56,8 @@ if __name__ == '__main__':
     redirect_response = input('\n\nPaste the full redirect URL here: ')
     token = get_token(session, redirect_response, client_id, client_secret)
 
-    create_playlist(token["access_token"])
+    # Get current user
+    # current_user_id = get_user_info(token["access_token"])
+
+    # create_playlist(token["access_token"], current_user_id)
+    get_and_categorize_data(token["access_token"])
