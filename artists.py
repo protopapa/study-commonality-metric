@@ -5,7 +5,7 @@ import requests
 base_url = "https://api.spotify.com/v1/"
 artists = "artists/"
 related_artists = "/related-artists"
-
+tracks = "/top-tracks"
 init_artist_id = "32iu6edxEe5fMPX029eAU3"
 
 

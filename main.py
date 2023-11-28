@@ -60,4 +60,9 @@ if __name__ == '__main__':
     # current_user_id = get_user_info(token["access_token"])
 
     # create_playlist(token["access_token"], current_user_id)
-    get_and_categorize_data(token["access_token"])
+    # get_and_categorize_data(token["access_token"])
+
+    a_list = read_data_artists_files()
+    ap_list = read_data_pop_artists_files()
+    aupop_list = read_data_unpop_artists_files()
+    afemale_list = read_data_pop_female_artists_files()

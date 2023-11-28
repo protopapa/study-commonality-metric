@@ -1,3 +1,4 @@
+import ast
 import json
 import operator
 
@@ -37,3 +38,31 @@ def get_and_categorize_data(access_token):
 
     with open('female-unpop-artists.json', 'w') as convert_file:
         convert_file.write(json.dumps(female_unpop_art))
+
+
+def read_data_artists_files():
+    with open('artists.json', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+
+    return data
+
+
+def read_data_unpop_artists_files():
+    with open('unpop-artists.json', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+
+    return data
+
+
+def read_data_pop_artists_files():
+    with open('pop-artists.json', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+
+    return data
+
+
+def read_data_pop_female_artists_files():
+    with open('female-unpop-artists.json', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+
+    return data
