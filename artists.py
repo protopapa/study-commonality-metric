@@ -48,3 +48,19 @@ def get_artist_tree(access_token):
                     artists_id_list.append(sar.get('id'))
             temp_sar_list = sa
     return artists_list
+
+
+def get_all_tops(alist, access_token):
+    mt = []
+    for a in alist:
+        mt = mt + get_artists_top(a, access_token)
+
+    return mt
+
+
+def get_artists_top(a, access_token):
+    param = {"market": "GR"}
+    headers = {'Authorization': "Bearer " + access_token}
+    response = requests.get(base_url + artists + a.get("id") + tracks, headers=headers, params=param)
+    t = response.json()
+    return t.get('tracks')

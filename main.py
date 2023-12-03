@@ -1,4 +1,5 @@
 import argparse
+import random
 
 from authorization import *
 from commonality import calculate_user_familiarity_for_g, calculate_commonality_for_g
@@ -62,7 +63,16 @@ if __name__ == '__main__':
     # create_playlist(token["access_token"], current_user_id)
     # get_and_categorize_data(token["access_token"])
 
-    a_list = read_data_artists_files()
-    ap_list = read_data_pop_artists_files()
-    aupop_list = read_data_unpop_artists_files()
-    afemale_list = read_data_pop_female_artists_files()
+    main_artists = read_data_pop_artists_files()
+    main_artists = choose_artists_for_list(main_artists, 0.5, 20)
+    main_items = get_all_tops(main_artists, token["access_token"])
+
+    special_unpop = read_data_unpop_artists_files()
+    special_unpop = choose_artists_for_list(special_unpop, 0.5, 5)
+    special_unpop_items = get_all_tops(special_unpop, token["access_token"])
+
+    special_female_unpop = read_data_pop_female_artists_files()
+    special_female_unpop = choose_artists_for_list(special_female_unpop, 0.5, 5)
+    special_female_unpop_items = get_all_tops(special_female_unpop, token["access_token"])
+
+

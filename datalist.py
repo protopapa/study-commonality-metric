@@ -1,6 +1,7 @@
 import ast
 import json
 import operator
+import random
 
 from artists import *
 
@@ -40,6 +41,19 @@ def get_and_categorize_data(access_token):
         convert_file.write(json.dumps(female_unpop_art))
 
 
+def choose_artists_for_list(al, threshold, size):
+    random.shuffle(al)
+    chosen_artists = []
+    for a in al:
+        if len(chosen_artists) >= size:
+            break
+        if random.uniform(0, 1) > threshold:
+            if a.get("popularity") > 4:
+                chosen_artists.append(a)
+
+    return chosen_artists
+
+
 def read_data_artists_files():
     with open('artists.json', encoding='utf-8') as json_file:
         data = json.load(json_file)
@@ -49,20 +63,20 @@ def read_data_artists_files():
 
 def read_data_unpop_artists_files():
     with open('unpop-artists.json', encoding='utf-8') as json_file:
-        data = json.load(json_file)
+        unpop = json.load(json_file)
 
-    return data
+    return unpop
 
 
 def read_data_pop_artists_files():
     with open('pop-artists.json', encoding='utf-8') as json_file:
-        data = json.load(json_file)
+        pop = json.load(json_file)
 
-    return data
+    return pop
 
 
 def read_data_pop_female_artists_files():
     with open('female-unpop-artists.json', encoding='utf-8') as json_file:
-        data = json.load(json_file)
+        f = json.load(json_file)
 
-    return data
+    return f
