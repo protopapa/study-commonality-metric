@@ -5,6 +5,7 @@ from authorization import *
 from commonality import calculate_user_familiarity_for_g, calculate_commonality_for_g
 from rankings import editorial_categories, generate_p_users
 from datalist import *
+from playlist import *
 
 client_id = ""
 client_secret = ""
@@ -29,7 +30,7 @@ def metric_calculations(p, user_list):
     for f in familiarities:
         commonality = calculate_commonality_for_g(f)
         commonalities.append(commonality)
-    print(f"Commonalities", commonalities)
+    print("Commonalities", commonalities)
 
 
 #     parser.add_argument("-m", "--Users", help="Amount of Users to generate")
@@ -75,4 +76,5 @@ if __name__ == '__main__':
     special_female_unpop = choose_artists_for_list(special_female_unpop, 0.5, 5)
     special_female_unpop_items = get_all_tops(special_female_unpop, token["access_token"])
 
-
+    the_list = create_playlist_items(main_items, special_unpop_items, special_female_unpop_items)
+    add_items_to_playlist(the_list, token["access_token"])
